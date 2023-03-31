@@ -5,29 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Calls extends Model
 {
     use HasFactory;
 
-    protected $table = "book";
+    protected $table = "calls";
     protected $fillable = [
-        'status',
-        'bookDate',
-        'club_id',
-        'admin_id',
-        'user_id',
+        "creationdate",
+        "admin_id",
+        "user_id"
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
-
-    public function club()
-    {
-        return $this->belongsTo(Clubs::class, "club_id");
-    }
-
+    
     public function user()
     {
         return $this->belongsTo(User::class, "user_id");

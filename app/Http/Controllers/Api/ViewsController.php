@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Views;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class ViewsController extends Controller
 {
@@ -26,4 +27,17 @@ class ViewsController extends Controller
             'data' => Views::with('user')->where("admin_id", $request->user()->id)->get(),
         ]);
     }
+
+    // public function saveView(Request $request)
+    // {
+    //     $valid = Validator::make($request->all(),[
+    //         "admin_id" => ['required', 'exists:users,id'],
+    //     ]);
+    //     if($valid->fails())
+    //         return $valid->messages();
+    //     Views::create([
+    //         "admin_id" => $request->admin_id,
+    //         "user_id" => $request->user()->id
+    //     ]);
+    // }
 }

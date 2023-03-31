@@ -43,6 +43,7 @@ class BookController extends Controller
             "admin_id" => $club->admin->id,
             "user_id" => $request->user()->id
         ]);
+
         
         return Response::json([
             "status" => "success",
@@ -50,4 +51,14 @@ class BookController extends Controller
             "data" => "Book Created Successfully"
         ]);
     }   
+
+    public function bookReport(Request $request)
+    {
+        $report = Book::with("user", "club")->where("admin_id", $request->user()->id)->get();
+        return Response::json([
+            "status" => "success",
+            "code" => 200,
+            "data" => $report
+        ]);
+    }
 }
