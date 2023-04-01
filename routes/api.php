@@ -25,8 +25,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', [LoginController:: class, "login"]);
-Route::post('register',[RegisterController::class, "register"]);
+Route::post('login', [LoginController:: class, "login"])->middleware(["crossOrigin"]);
+Route::post('register',[RegisterController::class, "register"])->middleware(["crossOrigin"]);
 Route::get('roles', [RollesController::class, "gelAll"]);
 Route::get('area', [AreaController::class, "getAll"]);
 Route::get('clubs', [ClubsController::class, "getAll"]);
