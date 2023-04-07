@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('logout', [LogoutController::class, "logout"]);
     Route::post('book', [BookController::class, "saveBook"]);
     Route::post('call', [CallsController::class, "saveCall"]);
+    Route::post('club', [ClubsController::class, 'saveClub']);
     // Route::post('view', [ViewsController::class, "saveView"]);
 
 

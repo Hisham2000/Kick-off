@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Clubs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class ClubsController extends Controller
 {
@@ -71,6 +72,38 @@ class ClubsController extends Controller
             "status" => "success",
             "code" => 200,
             "data" => $club
+        ]);
+    }
+
+    public function saveClub(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'price' => ['required', 'integer'],
+            'name' => ['required'],
+            'wc' => ['required', 'boolean'],
+            'cafe' => ['required', 'boolean'],
+            'area_id' => ['required', 'exists:area,id'],
+            'image' => ['required', 'mimes:jpeg,png,jpg,gif,svg'],
+        ]);
+        if($valid->fails()) return $valid->messages();
+        $cover = $request->file('image');
+        $extension = $cover->getClientOriginalExtension();
+        $imgName = (Clubs::all()->count()+1).'.'.$extension;
+        $request->image->move(public_path('assets/clubs'), $imgName);
+        Clubs::create([
+            'price' => $request->price,
+            'name' => $request->name,
+            'wc' => $request->wc,
+            'cafe' => $request->cafe,
+            'creationDate' => date('Y-m-d'),
+            'image' => asset("assets/clubs/$imgName"),
+            'admin_id' => $request->user()->id,
+            'area_id' => $request->area_id
+        ]);
+        return Response::json([
+            'status' => "success",
+            'code' => 200,
+            'data' => 'the club is created successfully',
         ]);
     }
 }
