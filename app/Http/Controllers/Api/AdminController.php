@@ -15,6 +15,20 @@ class AdminController extends Controller
     public function getAdminClubs(Request $request)
     {
         $clubs = Clubs::where('admin_id', $request->admin_id)->get();
+        $editedClub = collect();
+        foreach($clubs as $club)
+        {
+            $club->rate = null;
+            $sum = 0;
+            foreach($club->review as $review)
+            {
+                $sum += $review->rate;
+            }
+            if($club->review->count() > 0)
+                $club->rate = round($sum / $club->review->count());
+            else $club->rate = 0;
+            $editedClub->push($club);
+        }
         Views::create([
             "admin_id" => $request->admin_id,
             "user_id" => $request->user()->id
@@ -23,7 +37,7 @@ class AdminController extends Controller
         return Response::json([
             'status' => "success",
             'code' => 200,
-            'data' => $clubs
+            'data' => $editedClub
         ]);
 
         return Response::json([

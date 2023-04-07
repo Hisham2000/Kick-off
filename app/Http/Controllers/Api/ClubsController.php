@@ -14,21 +14,47 @@ class ClubsController extends Controller
     public function getAll()
     {
         $clubs = Clubs::with("admin")->orderBy("creationDate", "desc")->get();
+        $editedClub = collect();
+        foreach($clubs as $club)
+        {
+            $club->rate = null;
+            $sum = 0;
+            foreach($club->review as $review)
+            {
+                $sum += $review->rate;
+            }
+            if($club->review->count() > 0)
+                $club->rate = round($sum / $club->review->count());
+            else $club->rate = 0;
+            $editedClub->push($club);
+        }
         return Response::json([
             "status" => "success",
             "code" => 200,
-            "data" => $clubs
+            "data" => $editedClub
         ]);
     }
 
     public function getClub($club_id)
     {
-        $club = Clubs::with('admin')->where("id", $club_id)->get();
-        if(!$club->isEmpty())
+        $club = Clubs::with('admin','review')->where("id", $club_id)->get()->first();
+        $editedClub = collect();
+        $sum = 0;
+        $club['rate'] = null;
+        foreach($club->review as $review)
+        {
+            $sum += $review->rate;
+        }
+        if($club->review->count() > 0)
+            $club['rate'] = round($sum / $club->review->count());
+        else $club['rate'] = 0;
+        $editedClub->push($club);
+
+        if(!$editedClub->isEmpty())
         return Response::json([
             "status" => "success",
             "code" => 200,
-            "data" => $club
+            "data" => $editedClub
         ]);
 
         return Response::json([

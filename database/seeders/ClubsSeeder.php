@@ -24,7 +24,6 @@ class ClubsSeeder extends Seeder
                 'name' => $faker->name,
                 'wc' => $faker->boolean(),
                 'cafe' => $faker->boolean(),
-                'rate' => $faker->numberBetween(1,5),
                 'image' => asset('assets/images/stadium.jpg'),
                 'creationDate' => $faker->dateTimeBetween(),
                 'admin_id' => 1,

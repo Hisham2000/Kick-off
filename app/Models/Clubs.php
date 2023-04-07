@@ -25,6 +25,7 @@ class Clubs extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
+        'review'
     ];
 
     public function admin()
@@ -35,5 +36,9 @@ class Clubs extends Model
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    public function review(){
+        return $this->hasMany(Reviews::class, 'club_id');
     }
 }
