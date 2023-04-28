@@ -18,5 +18,12 @@ class AreaSeeder extends Seeder
         Area::create(["name" => "Maadi"]);
         Area::create(["name" => "Cairo"]);
         Area::create(["name" => "Giza"]);
+        Area::create(["name" => "Dar Elsalam"]);
+        Area::create(["name" => "Kebaa"]);
+        Area::create(["name" => "Ramses"]);
+        Area::create(["name" => "Alf Maskan"]);
+        Area::create(["name" => "El Salam"]);
+        Area::create(["name" => "Doki"]);
+        Area::create(["name" => "MOhndseen"]);
     }
 }

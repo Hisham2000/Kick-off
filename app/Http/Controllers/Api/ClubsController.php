@@ -14,7 +14,7 @@ class ClubsController extends Controller
 
     public function getAll()
     {
-        $clubs = Clubs::with("admin")->orderBy("creationDate", "desc")->limit(10)->get();
+        $clubs = Clubs::with("admin")->orderBy("creationDate", "desc")->get();
         $editedClub = collect();
         foreach($clubs as $club)
         {

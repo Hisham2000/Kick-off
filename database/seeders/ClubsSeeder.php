@@ -27,7 +27,7 @@ class ClubsSeeder extends Seeder
                 'image' => asset('assets/images/stadium.jpg'),
                 'creationDate' => $faker->dateTimeBetween(),
                 'admin_id' => 1,
-                'area_id' => $faker->numberBetween(1, 3),
+                'area_id' => $faker->numberBetween(1, 10),
             ]);
         }
 
