@@ -21,7 +21,8 @@ class CallsSeeder extends Seeder
         Calls::create([
             "creationdate" => $faker->date(),
             "admin_id" => 1,
-            "user_id" => 2
+            "user_id" => 2,
+            "club_id" => 1
         ]);
     }
 }

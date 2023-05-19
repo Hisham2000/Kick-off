@@ -13,7 +13,8 @@ class Calls extends Model
     protected $fillable = [
         "creationdate",
         "admin_id",
-        "user_id"
+        "user_id",
+        "club_id"
     ];
 
     protected $hidden = [
@@ -24,5 +25,10 @@ class Calls extends Model
     public function user()
     {
         return $this->belongsTo(User::class, "user_id");
+    }
+
+    public function club()
+    {
+        return $this->belongsTo(Clubs::class, "club_id");
     }
 }

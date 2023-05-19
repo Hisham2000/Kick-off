@@ -26,6 +26,8 @@ class ClubsSeeder extends Seeder
                 'cafe' => $faker->boolean(),
                 'image' => asset('assets/images/stadium.jpg'),
                 'creationDate' => $faker->dateTimeBetween(),
+                'notes' => $faker->text(50),
+                'address'=> $faker->text(50),
                 'admin_id' => 1,
                 'area_id' => $faker->numberBetween(1, 10),
             ]);

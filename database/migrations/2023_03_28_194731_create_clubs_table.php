@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean("wc");
             $table->boolean("cafe");
             $table->date("creationDate");
+            $table->string("address")->nullable();
+            $table->text("notes")->nullable();
             $table->string("image");
             $table->unsignedBigInteger("admin_id");
             $table->foreign("admin_id")->on("users")->references("id")

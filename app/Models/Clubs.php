@@ -15,6 +15,8 @@ class Clubs extends Model
         "name",
         "wc",
         "cafe",
+        "address",
+        "notes",
         "creationDate",
         "image",
         "admin_id",

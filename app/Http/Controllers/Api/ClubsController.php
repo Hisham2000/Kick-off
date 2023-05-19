@@ -98,7 +98,9 @@ class ClubsController extends Controller
             'creationDate' => date('Y-m-d'),
             'image' => asset("assets/clubs/$imgName"),
             'admin_id' => $request->user()->id,
-            'area_id' => $request->area_id
+            'area_id' => $request->area_id,
+            'notes' => $request->notes,
+            'address' => $request->address
         ]);
         return Response::json([
             'status' => "success",

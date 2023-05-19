@@ -23,7 +23,7 @@ class CallsController extends Controller
 
     public function callsReport(Request $request)
     {
-        $report = Calls::with('user')->where('admin_id', $request->user()->id)->get();
+        $report = Calls::with(['user', 'club'])->where('admin_id', $request->user()->id)->get();
         return Response::json([
             "status" => "success",
             "code" => 200,
@@ -43,6 +43,7 @@ class CallsController extends Controller
             "creationdate" => date("Y-m-d"),
             'admin_id' => $request->admin_id,
             'user_id' => $request->user()->id,
+            'club_id' => $request->club_id,
         ]);
 
         return Response::json([
