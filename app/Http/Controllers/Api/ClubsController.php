@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clubs;
+use App\Models\Views;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -36,7 +37,7 @@ class ClubsController extends Controller
         ]);
     }
 
-    public function getClub($club_id)
+    public function getClub(Request $request, $club_id)
     {
         $club = Clubs::with('admin','review')->where("id", $club_id)->get()->first();
         $editedClub = collect();
@@ -52,11 +53,20 @@ class ClubsController extends Controller
         $editedClub->push($club);
 
         if(!$editedClub->isEmpty())
-        return Response::json([
-            "status" => "success",
-            "code" => 200,
-            "data" => $editedClub
-        ]);
+        {
+
+            Views::create([
+                "admin_id" => $club->admin->id,
+                "user_id" => $request->user()->id,
+                "club_id" => $club_id
+            ]);
+
+            return Response::json([
+                "status" => "success",
+                "code" => 200,
+                "data" => $editedClub
+            ]);
+        }
 
         return Response::json([
             "status" => "fail",

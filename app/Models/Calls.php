@@ -14,7 +14,9 @@ class Calls extends Model
         "creationdate",
         "admin_id",
         "user_id",
-        "club_id"
+        "club_id",
+        "start_time",
+        "end_time"
     ];
 
     protected $hidden = [

@@ -30,7 +30,7 @@ Route::post('register',[RegisterController::class, "register"])->middleware(["cr
 Route::get('roles', [RollesController::class, "gelAll"]);
 Route::get('area', [AreaController::class, "getAll"]);
 Route::get('clubs', [ClubsController::class, "getAll"]);
-Route::get('clubs/{id}', [ClubsController::class, "getClub"]);
+
 
 
 Route::middleware(['auth:sanctum'])->group(function(){
@@ -39,6 +39,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('book', [BookController::class, "saveBook"]);
     Route::post('call', [CallsController::class, "saveCall"]);
     Route::post('club', [ClubsController::class, 'saveClub']);
+    Route::get('clubs/{id}', [ClubsController::class, "getClub"]);
     // Route::post('view', [ViewsController::class, "saveView"]);
 
 

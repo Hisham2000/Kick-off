@@ -22,7 +22,9 @@ class CallsSeeder extends Seeder
             "creationdate" => $faker->date(),
             "admin_id" => 1,
             "user_id" => 2,
-            "club_id" => 1
+            "club_id" => 1,
+            "start_time"=> $faker->time(),
+            "end_time"=> $faker->time()
         ]);
     }
 }

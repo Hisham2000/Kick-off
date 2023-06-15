@@ -29,10 +29,7 @@ class AdminController extends Controller
             else $club->rate = 0;
             $editedClub->push($club);
         }
-        Views::create([
-            "admin_id" => $request->admin_id,
-            "user_id" => $request->user()->id
-        ]);
+        
         if(!$clubs->isEmpty())
         return Response::json([
             'status' => "success",

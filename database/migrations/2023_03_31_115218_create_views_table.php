@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("club_id");
+            $table->foreign("club_id")->on("clubs")->references("id")
+            ->onDelete("cascade")->onUpdate("cascade");
+
             $table->unsignedBigInteger("admin_id");
             $table->foreign("admin_id")->on("users")->references("id")
             ->onDelete("cascade")->onUpdate("cascade");

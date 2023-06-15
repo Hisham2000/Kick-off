@@ -34,13 +34,18 @@ class CallsController extends Controller
     public function saveCall(Request $request)
     {
         $valid = Validator::make($request->all(),[
-            "admin_id" => ["required", "exists:users,id"]
+            "admin_id" => ["required", "exists:users,id"],
+            "date" => ["required"],
+            "start_time" => ["required"],
+            "end_time" => ["required"]
         ]);
         if($valid->fails())
             return $valid->messages();
 
         Calls::create([
-            "creationdate" => date("Y-m-d"),
+            "creationdate" => $request->date,
+            "start_time"=> $request->start_time,
+            "end_time" => $request->end_time,
             'admin_id' => $request->admin_id,
             'user_id' => $request->user()->id,
             'club_id' => $request->club_id,

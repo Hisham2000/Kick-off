@@ -24,7 +24,7 @@ class ViewsController extends Controller
         return Response::json([
             'status' => "success",
             'code' => 200,
-            'data' => Views::with('user')->where("admin_id", $request->user()->id)->get(),
+            'data' => Views::with(['user', 'club'])->where("admin_id", $request->user()->id)->get(),
         ]);
     }
 

@@ -17,7 +17,8 @@ class ViewsSeeder extends Seeder
     {
         Views::create([
             'admin_id' => 1,
-            'user_id' => 2
+            'user_id' => 2,
+            'club_id' => 1
         ]);
     }
 }
