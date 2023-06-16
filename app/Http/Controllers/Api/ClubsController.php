@@ -39,6 +39,7 @@ class ClubsController extends Controller
 
     public function getClub(Request $request, $club_id)
     {
+        dd($request->user(), $club_id);
         $club = Clubs::with('admin','review')->where("id", $club_id)->get()->first();
         $editedClub = collect();
         $sum = 0;
@@ -56,7 +57,7 @@ class ClubsController extends Controller
         {
 
             Views::create([
-                "admin_id" => $club->admin->id,
+                "admin_id" => $club->admin()->id,
                 "user_id" => $request->user()->id,
                 "club_id" => $club_id
             ]);

@@ -35,17 +35,12 @@ class CallsController extends Controller
     {
         $valid = Validator::make($request->all(),[
             "admin_id" => ["required", "exists:users,id"],
-            "date" => ["required"],
-            "start_time" => ["required"],
-            "end_time" => ["required"]
         ]);
         if($valid->fails())
             return $valid->messages();
 
         Calls::create([
-            "creationdate" => $request->date,
-            "start_time"=> $request->start_time,
-            "end_time" => $request->end_time,
+            "creationdate" => date("Y-m-d"),
             'admin_id' => $request->admin_id,
             'user_id' => $request->user()->id,
             'club_id' => $request->club_id,

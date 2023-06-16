@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('calls', function (Blueprint $table) {
             $table->id();
             $table->date("creationdate");
-            $table->string("start_time");
-            $table->string("end_time");
             $table->unsignedBigInteger("admin_id");
             $table->foreign("admin_id")->on("users")->references("id")
             ->onDelete("cascade")->onUpdate("cascade");

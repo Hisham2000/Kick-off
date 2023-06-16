@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->boolean('status')->default(false);
             $table->date("bookDate");
+            $table->string("start_time");
+            $table->string("end_time");
             
             $table->unsignedBigInteger("club_id");
             $table->foreign("club_id")->on("clubs")->references("id")

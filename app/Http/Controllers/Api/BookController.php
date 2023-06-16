@@ -25,12 +25,12 @@ class BookController extends Controller
 
     public function saveBook(Request $request)
     {
-        // dd(PersonalAccessToken::findToken('token', $request->bearerToken()));
-        // dd(Auth::guard('sanctum')->user());
-        // dd(request()->user());
 
         $valid = Validator::make($request->all(),[
             "club_id" => ['required', 'exists:clubs,id'],
+            "date" => ["required"],
+            "start_time" => ["required"],
+            "end_time" => ["required"]
         ]);
 
         if($valid->fails())
@@ -38,7 +38,9 @@ class BookController extends Controller
         $club = Clubs::find($request->club_id);
         Book::create([
             "status" => 0,
-            "bookDate" =>  date('Y-m-d'),
+            "bookDate" =>  $request->date,
+            "start_time" =>  $request->start_time,
+            "end_time" =>  $request->end_time,
             "club_id" => $club->id,
             "admin_id" => $club->admin->id,
             "user_id" => $request->user()->id

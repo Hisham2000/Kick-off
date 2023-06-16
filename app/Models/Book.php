@@ -15,6 +15,8 @@ class Book extends Model
         'bookDate',
         'club_id',
         'admin_id',
+        "start_time",
+        "end_time",
         'user_id',
     ];
 

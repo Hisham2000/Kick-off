@@ -20,6 +20,8 @@ class BookSeeder extends Seeder
             'status' => false,
             'bookDate' => date('Y-m-d'),
             'club_id' => 1,
+            'start_time' => "20:05:05",
+            'end_time' => "22:05:05",
             'admin_id' => 1,
             'user_id' => 2,
         ]);
